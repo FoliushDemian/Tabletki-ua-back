@@ -4,9 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Comparator;
 
 @Entity
-public class DrugEntity {
+public class DrugEntity implements Comparator<DrugEntity> {
 
     @Id
     @GeneratedValue
@@ -58,5 +59,10 @@ public class DrugEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int compare(DrugEntity d1, DrugEntity d2) {
+        return d1.getName().compareTo(d2.getName());
     }
 }

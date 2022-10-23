@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -48,5 +50,17 @@ public class DrugService {
         newDrug.setPrice(drug.getPrice());
         newDrug.setImage(drug.getImage());
         newDrug.setDescription(drug.getDescription());
+    }
+
+    public List<DrugEntity> sortByName() {
+        List<DrugEntity> items = (ArrayList<DrugEntity>) drugRepo.findAll();
+        items.sort(Comparator.comparing(DrugEntity::getName));
+        return items;
+    }
+
+    public List<DrugEntity> sortByPrice() {
+        List<DrugEntity> items = (ArrayList<DrugEntity>) drugRepo.findAll();
+        items.sort(Comparator.comparing(DrugEntity::getPrice));
+        return items;
     }
 }

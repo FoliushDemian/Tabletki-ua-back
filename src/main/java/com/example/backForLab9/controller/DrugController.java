@@ -63,4 +63,15 @@ public class DrugController {
     private void update(@PathVariable("id") Integer id, @RequestBody DrugEntity drug) {
         drugService.update(id, drug);
     }
+    @CrossOrigin
+    @GetMapping("/sortByName")
+    private List<DrugEntity> sortByName() {
+        return drugService.sortByName();
+    }
+
+    @CrossOrigin
+    @GetMapping("/sortByPrice")
+    private List<DrugEntity> sortByPrice() {
+        return drugService.sortByPrice();
+    }
 }
